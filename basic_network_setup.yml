@@ -1,5 +1,7 @@
 - name: Basic_Network_Setup
   hosts: routers
+  var_files:
+    - vault.yml
   tasks:
     - name: Set Hostname
       ios_config:
@@ -9,7 +11,7 @@
     - name: Configure Passwords
       ios_user:
           username: admin
-          password: "pass11"
+          password: "{{ admin_password }}"
           privilege: 15
 
     - name: Disable Telnet
