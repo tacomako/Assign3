@@ -1,0 +1,16 @@
+hostname {{ hostname }}
+enable secret {{ admin_pass }}
+username admin secret {{ admin_pass }}
+line vty 0 15
+ transport input ssh
+!
+line vty 0 15
+ access-class 10 in
+ transport input ssh
+ exec-timeout 5 0
+ logging synchronous
+ login local
+!
+logging buffered 4096
+service timestamps debug datetime msec localtime
+service timestamps log datetime msec localtime
