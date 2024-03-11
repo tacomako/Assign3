@@ -1,10 +1,5 @@
 - name: Configure OSPF
   host: routers
-  vars:
-    ospf_network: "192.168.10.0"
-    ospf_subnet_mask: "0.0.0.255"
-  tasks:
-    - name: Template OSPF Configuration
-      temaplate:
-        src: ospf_template.j2
-        dest: /home/SHERNET/murohd/.git/Assign3/ospf_template.j2
+  roles:
+    - role: network_config
+  gather_facts: 10

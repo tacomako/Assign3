@@ -1,41 +1,6 @@
 - name: Basic_Network_Setup
   hosts: routers
-  var_files:
-    - vault.yml
-  tasks:
-    - name: Set Hostname
-      ios_config:
-        lines:
-          - hostname {{ inventory_hostname }}
-    
-    - name: Configure Passwords
-      ios_user:
-          username: admin
-          password: "{{ admin_password }}"
-          privilege: 15
-
-    - name: Disable Telnet
-      ios_config:
-        lines:
-          -transport input ssh
-
-    - name: Configure console and VTY
-      ios_config:
-        lines:
-          - line console 0
-          - exec-timeout 5 0
-          - logging synchronous
-          - login local
-          - line vty 0 15
-          - access-class 10 in
-          - exec-timeout 5 0
-          - logging synchronous
-          - login local
-    
-    - name: Enable Logging with Timestamps
-      ios_config: 
-        lines:
-          - logging buffered 4096
-          - service timestamps debug datetime msec localtime
-          - service timestamps log datetime msec localtime
+  roles:
+    - role: netowrk_config
+  gather_facts: no
 

@@ -1,2 +1,4 @@
----
-# vars file for arista_config
+ansible_user: admin
+ansible_network_os: ios
+ansible_connection: network_cli
+hostname: "{{ inventory_hostname }}"

@@ -1,2 +1,9 @@
----
-# tasks file for arista_config
+- name: Basic_Network_Setup
+  template: 
+    src: device_setup.j2
+    dest: "/home/SHERNET/murohd/.git/Assign3/{{ inventory_hostname }}_config.txt"
+
+- name: Set OSPF
+  template:
+    src: ospf_template.j2
+    dest:  "/home/SHERNET/murohd/.git/Assign3/{{ inventory_hostname }}_ospf.txt"
